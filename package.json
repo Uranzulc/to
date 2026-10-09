@@ -1,0 +1,26 @@
+{
+  "name": "cardquiz",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Full-stack flashcard quiz app in TypeScript (Express API + TS frontend)",
+  "scripts": {
+    "dev": "concurrently -n server,client \"tsx watch src/server/index.ts\" \"esbuild src/client/main.ts --bundle --outfile=public/app.js --sourcemap --watch\"",
+    "build:client": "esbuild src/client/main.ts --bundle --outfile=public/app.js --minify",
+    "build:server": "tsc -p tsconfig.json",
+    "build": "npm run typecheck && npm run build:server && npm run build:client",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.client.json",
+    "start": "node dist/server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "concurrently": "^9.1.0",
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
